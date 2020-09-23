@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
-using Microsoft.Uii.Csr.Browser.Web;
 using IWebBrowser = CefSharp.IWebBrowser;
 
 namespace Steam_Desktop_Authenticator
