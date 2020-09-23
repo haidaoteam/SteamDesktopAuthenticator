@@ -734,12 +734,12 @@ namespace Steam_Desktop_Authenticator
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "https://haidaoteam.com/blog/sdachinese");
+            System.Diagnostics.Process.Start("explorer.exe", "https://doc.tabbywork.com/docs/mindoc/sda_Chinese");
         }
 
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "https://haidaoteam.com/product/csgo_dota2_skins_trade_bot");
+            System.Diagnostics.Process.Start("explorer.exe", "https://haidaoteam.com/");
         }
 
         private void panelButtons_SizeChanged(object sender, EventArgs e)
