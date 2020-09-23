@@ -44,7 +44,7 @@
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(383, 159);
             this.labelText.TabIndex = 0;
-            this.labelText.Text = "Sample Text~~~";
+            this.labelText.Text = "示例文本~~~";
             // 
             // txtBox
             // 
@@ -60,7 +60,7 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(98, 28);
             this.btnAccept.TabIndex = 2;
-            this.btnAccept.Text = "Accept";
+            this.btnAccept.Text = "接受";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
@@ -71,7 +71,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 28);
             this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

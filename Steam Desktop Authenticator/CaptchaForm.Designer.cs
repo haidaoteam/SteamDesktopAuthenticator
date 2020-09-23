@@ -46,7 +46,7 @@
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(233, 18);
             this.labelText.TabIndex = 0;
-            this.labelText.Text = "Please enter the following captcha code:";
+            this.labelText.Text = "请输入下图验证码";
             this.labelText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtBox
@@ -63,7 +63,7 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(98, 28);
             this.btnAccept.TabIndex = 2;
-            this.btnAccept.Text = "Submit";
+            this.btnAccept.Text = "提交";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
@@ -74,7 +74,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 28);
             this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

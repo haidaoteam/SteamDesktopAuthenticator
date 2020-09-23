@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.Uii.Csr.Browser.Web;
+using IWebBrowser = CefSharp.IWebBrowser;
 
 namespace Steam_Desktop_Authenticator
 {
@@ -50,7 +52,7 @@ namespace Steam_Desktop_Authenticator
             // Check if the session is expired
             if (request.Url == "steammobile://lostauth")
             {
-                MessageBox.Show("Failed to load confirmations.\nTry using \"Force session refresh\" under the Selected Account menu.\nIf that doesn't work use the \"Login again\" option.", "Confirmations", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("加载确认失败。尝试使用“选择账号”菜单下的“强制刷新会话”。如果依然不起作用，请使用“再次登录”选项。", "确认", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return CefReturnValue.Cancel;
             }
             

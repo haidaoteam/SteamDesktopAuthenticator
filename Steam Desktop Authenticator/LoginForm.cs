@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using SteamAuth;
 
@@ -25,12 +25,12 @@ namespace Steam_Desktop_Authenticator
 
                 if (this.LoginReason == LoginType.Refresh)
                 {
-                    labelLoginExplanation.Text = "Your Steam credentials have expired. For trade and market confirmations to work properly, please login again.";
+                    labelLoginExplanation.Text = "您的Steam登录信息已过期. 为了保证确认和交易确认功能可以正常使用, 请重新登录.";
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to find your account. Try closing and re-opening SDA.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("无法找到账户。请关闭并重新打开SDA尝试。", "登录失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
         }
@@ -95,27 +95,27 @@ namespace Steam_Desktop_Authenticator
                         break;
 
                     case LoginResult.Need2FA:
-                        MessageBox.Show("This account already has a mobile authenticator linked to it.\nRemove the old authenticator from your Steam account before adding a new one.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("此帐户已经有一个与其绑定的移动身份验证器。在添入新的验证器之前，请把您的Steam帐户从旧的验证器中删除。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.BadRSA:
-                        MessageBox.Show("Error logging in: Steam returned \"BadRSA\".", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：Steam返回“BadRSA”。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.BadCredentials:
-                        MessageBox.Show("Error logging in: Username or password was incorrect.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：用户名或密码不正确。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.TooManyFailedLogins:
-                        MessageBox.Show("Error logging in: Too many failed logins, try again later.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：太多次失败的登录，稍后再试。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.GeneralFailure:
-                        MessageBox.Show("Error logging in: Steam returned \"GeneralFailure\".", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：Steam返回“GeneralFailure”。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
                 }
@@ -136,7 +136,7 @@ namespace Steam_Desktop_Authenticator
                         string phoneNumber = "";
                         while (!PhoneNumberOkay(phoneNumber))
                         {
-                            InputForm phoneNumberForm = new InputForm("Enter your phone number in the following format: +{cC} phoneNumber. EG, +1 123-456-7890");
+                            InputForm phoneNumberForm = new InputForm("以下列格式输入您的电话号码：+{区号}电话号码。+86 12345678910");
                             phoneNumberForm.txtBox.Text = "+1 ";
                             phoneNumberForm.ShowDialog();
                             if (phoneNumberForm.Canceled)
@@ -155,11 +155,11 @@ namespace Steam_Desktop_Authenticator
                         break;
 
                     case AuthenticatorLinker.LinkResult.MustConfirmEmail:
-                        MessageBox.Show("Please check your email, and click the link Steam sent you before continuing.");
+                        MessageBox.Show("Steam会先发一封确认添加手机号码的邮件，请先去点击邮件中的添加手机号码按钮，然后点击确认。");
                         break;
 
                     case AuthenticatorLinker.LinkResult.GeneralFailure:
-                        MessageBox.Show("Error adding your phone number. Steam returned \"GeneralFailure\".");
+                        MessageBox.Show("添加电话号码时出错。Steam返回“GeneralFailure”。");
                         this.Close();
                         return;
                 }
@@ -169,14 +169,14 @@ namespace Steam_Desktop_Authenticator
             string passKey = null;
             if (manifest.Entries.Count == 0)
             {
-                passKey = manifest.PromptSetupPassKey("Please enter an encryption passkey. Leave blank or hit cancel to not encrypt (VERY INSECURE).");
+                passKey = manifest.PromptSetupPassKey("请输入加密密码。留下空白或点击取消不加密都非常不安全。");
             }
             else if (manifest.Entries.Count > 0 && manifest.Encrypted)
             {
                 bool passKeyValid = false;
                 while (!passKeyValid)
                 {
-                    InputForm passKeyForm = new InputForm("Please enter your current encryption passkey.");
+                    InputForm passKeyForm = new InputForm("请输入您当前的加密密码。");
                     passKeyForm.ShowDialog();
                     if (!passKeyForm.Canceled)
                     {
@@ -184,7 +184,7 @@ namespace Steam_Desktop_Authenticator
                         passKeyValid = manifest.VerifyPasskey(passKey);
                         if (!passKeyValid)
                         {
-                            MessageBox.Show("That passkey is invalid. Please enter the same passkey you used for your other accounts.");
+                            MessageBox.Show("此密码无效。请输入您用于其他帐户的密码。");
                         }
                     }
                     else
@@ -199,17 +199,17 @@ namespace Steam_Desktop_Authenticator
             if (!manifest.SaveAccount(linker.LinkedAccount, passKey != null, passKey))
             {
                 manifest.RemoveAccount(linker.LinkedAccount);
-                MessageBox.Show("Unable to save mobile authenticator file. The mobile authenticator has not been linked.");
+                MessageBox.Show("无法保存移动身份验证器文件。 移动身份验证器尚未连接。");
                 this.Close();
                 return;
             }
 
-            MessageBox.Show("The Mobile Authenticator has not yet been linked. Before finalizing the authenticator, please write down your revocation code: " + linker.LinkedAccount.RevocationCode);
+            MessageBox.Show("移动身份验证器尚未连接。 在最终确认使用桌面验证器之前，请写下您的撤销代码：" + linker.LinkedAccount.RevocationCode);
 
             AuthenticatorLinker.FinalizeResult finalizeResponse = AuthenticatorLinker.FinalizeResult.GeneralFailure;
             while (finalizeResponse != AuthenticatorLinker.FinalizeResult.Success)
             {
-                InputForm smsCodeForm = new InputForm("Please input the SMS code sent to your phone.");
+                InputForm smsCodeForm = new InputForm("请输入发送到您手机的短信代码。");
                 smsCodeForm.ShowDialog();
                 if (smsCodeForm.Canceled)
                 {
@@ -218,11 +218,11 @@ namespace Steam_Desktop_Authenticator
                     return;
                 }
 
-                InputForm confirmRevocationCode = new InputForm("Please enter your revocation code to ensure you've saved it.");
+                InputForm confirmRevocationCode = new InputForm("请输入您的撤销代码，以确保您已保存它。");
                 confirmRevocationCode.ShowDialog();
                 if (confirmRevocationCode.txtBox.Text.ToUpper() != linker.LinkedAccount.RevocationCode)
                 {
-                    MessageBox.Show("Revocation code incorrect; the authenticator has not been linked.");
+                    MessageBox.Show("撤销代码不正确；无法连接桌面验证器。");
                     manifest.RemoveAccount(linker.LinkedAccount);
                     this.Close();
                     return;
@@ -237,13 +237,13 @@ namespace Steam_Desktop_Authenticator
                         continue;
 
                     case AuthenticatorLinker.FinalizeResult.UnableToGenerateCorrectCodes:
-                        MessageBox.Show("Unable to generate the proper codes to finalize this authenticator. The authenticator should not have been linked. In the off-chance it was, please write down your revocation code, as this is the last chance to see it: " + linker.LinkedAccount.RevocationCode);
+                        MessageBox.Show("无法生成正确的代码来完成此身份验证器。 验证器没有被连接。 应该是偶发状况，请写下你的撤销代码，因为这是最后一次看到它的机会：" + linker.LinkedAccount.RevocationCode);
                         manifest.RemoveAccount(linker.LinkedAccount);
                         this.Close();
                         return;
 
                     case AuthenticatorLinker.FinalizeResult.GeneralFailure:
-                        MessageBox.Show("Unable to finalize this authenticator. The authenticator should not have been linked. In the off-chance it was, please write down your revocation code, as this is the last chance to see it: " + linker.LinkedAccount.RevocationCode);
+                        MessageBox.Show("无法生成正确的代码来完成此身份验证器。 验证器没有被连接。 应该是偶发状况，请写下你的撤销代码，因为这是最后一次看到它的机会：" + linker.LinkedAccount.RevocationCode);
                         manifest.RemoveAccount(linker.LinkedAccount);
                         this.Close();
                         return;
@@ -252,7 +252,7 @@ namespace Steam_Desktop_Authenticator
 
             //Linked, finally. Re-save with FullyEnrolled property.
             manifest.SaveAccount(linker.LinkedAccount, passKey != null, passKey);
-            MessageBox.Show("Mobile authenticator successfully linked. Please write down your revocation code: " + linker.LinkedAccount.RevocationCode);
+            MessageBox.Show("成功连接移动验证器。 请写下你的撤销代码：" + linker.LinkedAccount.RevocationCode);
             this.Close();
         }
 
@@ -292,22 +292,22 @@ namespace Steam_Desktop_Authenticator
                         break;
 
                     case LoginResult.BadRSA:
-                        MessageBox.Show("Error logging in: Steam returned \"BadRSA\".", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：Steam返回“BadRSA”。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.BadCredentials:
-                        MessageBox.Show("Error logging in: Username or password was incorrect.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：用户名或密码不正确。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.TooManyFailedLogins:
-                        MessageBox.Show("Error logging in: Too many failed logins, try again later.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：太多次失败的登录，稍后再试。", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
 
                     case LoginResult.GeneralFailure:
-                        MessageBox.Show("Error logging in: Steam returned \"GeneralFailure\".", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("错误记录：Steam返回\"GeneralFailure\".", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.Close();
                         return;
                 }
@@ -323,14 +323,14 @@ namespace Steam_Desktop_Authenticator
             string passKey = null;
             if (man.Entries.Count == 0)
             {
-                passKey = man.PromptSetupPassKey("Please enter an encryption passkey. Leave blank or hit cancel to not encrypt (VERY INSECURE).");
+                passKey = man.PromptSetupPassKey("请输入一个加密密码. 不加密请留空 (非常不安全).");
             }
             else if (man.Entries.Count > 0 && man.Encrypted)
             {
                 bool passKeyValid = false;
                 while (!passKeyValid)
                 {
-                    InputForm passKeyForm = new InputForm("Please enter your current encryption passkey.");
+                    InputForm passKeyForm = new InputForm("请输入当前的加密密码.");
                     passKeyForm.ShowDialog();
                     if (!passKeyForm.Canceled)
                     {
@@ -338,7 +338,7 @@ namespace Steam_Desktop_Authenticator
                         passKeyValid = man.VerifyPasskey(passKey);
                         if (!passKeyValid)
                         {
-                            MessageBox.Show("That passkey is invalid. Please enter the same passkey you used for your other accounts.");
+                            MessageBox.Show("这个加密密码不正确. 请输入你用于加密其他账号信息的密码.");
                         }
                     }
                     else
@@ -352,11 +352,11 @@ namespace Steam_Desktop_Authenticator
             man.SaveAccount(account, passKey != null, passKey);
             if (IsRefreshing)
             {
-                MessageBox.Show("Your login session was refreshed.");
+                MessageBox.Show("您的登录状态已刷新。");
             }
             else
             {
-                MessageBox.Show("Mobile authenticator successfully linked. Please write down your revocation code: " + account.RevocationCode);
+                MessageBox.Show("成功连接移动验证器。 请记下你的撤销代码: " + account.RevocationCode);
             }
             this.Close();
         }

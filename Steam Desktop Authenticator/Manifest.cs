@@ -161,7 +161,7 @@ namespace Steam_Desktop_Authenticator
             string passKey = null;
             while (!passKeyValid)
             {
-                InputForm passKeyForm = new InputForm("Please enter your encryption passkey.", true);
+                InputForm passKeyForm = new InputForm("请输入你的加密密码.", true);
                 passKeyForm.ShowDialog();
                 if (!passKeyForm.Canceled)
                 {
@@ -169,7 +169,7 @@ namespace Steam_Desktop_Authenticator
                     passKeyValid = this.VerifyPasskey(passKey);
                     if (!passKeyValid)
                     {
-                        MessageBox.Show("That passkey is invalid.");
+                        MessageBox.Show("加密密码错误.");
                     }
                 }
                 else
@@ -180,21 +180,21 @@ namespace Steam_Desktop_Authenticator
             return passKey;
         }
 
-        public string PromptSetupPassKey(string initialPrompt = "Enter passkey, or hit cancel to remain unencrypted.")
+        public string PromptSetupPassKey(string initialPrompt = "输入密码或者点击取消保持不加密。")
         {
             InputForm newPassKeyForm = new InputForm(initialPrompt);
             newPassKeyForm.ShowDialog();
             if (newPassKeyForm.Canceled || newPassKeyForm.txtBox.Text.Length == 0)
             {
-                MessageBox.Show("WARNING: You chose to not encrypt your files. Doing so imposes a security risk for yourself. If an attacker were to gain access to your computer, they could completely lock you out of your account and steal all your items.");
+                MessageBox.Show("警告：您选择不加密您的文件。这样做会给自己带来安全风险。如果攻击者要访问您的计算机，他们可以将您完全锁定在您的帐户之外，并窃取您的所有信息。");
                 return null;
             }
 
-            InputForm newPassKeyForm2 = new InputForm("Confirm new passkey.");
+            InputForm newPassKeyForm2 = new InputForm("确认新加密密码.");
             newPassKeyForm2.ShowDialog();
             if (newPassKeyForm2.Canceled)
             {
-                MessageBox.Show("WARNING: You chose to not encrypt your files. Doing so imposes a security risk for yourself. If an attacker were to gain access to your computer, they could completely lock you out of your account and steal all your items.");
+                MessageBox.Show("警告：您选择不加密您的文件。这样做会给自己带来安全风险。如果攻击者要访问您的计算机，他们可以将您完全锁定在您的帐户之外，并窃取您的所有信息。");
                 return null;
             }
 
@@ -203,18 +203,18 @@ namespace Steam_Desktop_Authenticator
 
             if (newPassKey != confirmPassKey)
             {
-                MessageBox.Show("Passkeys do not match.");
+                MessageBox.Show("密码不匹配.");
                 return null;
             }
 
             if (!this.ChangeEncryptionKey(null, newPassKey))
             {
-                MessageBox.Show("Unable to set passkey.");
+                MessageBox.Show("无法设置加密密码。");
                 return null;
             }
             else
             {
-                MessageBox.Show("Passkey successfully set.");
+                MessageBox.Show("加密成功");
             }
 
             return newPassKey;

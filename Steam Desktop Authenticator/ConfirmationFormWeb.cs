@@ -26,7 +26,7 @@ namespace Steam_Desktop_Authenticator
         {
             InitializeComponent();
             this.steamAccount = steamAccount;
-            this.Text = String.Format("Trade Confirmations - {0}", steamAccount.AccountName);
+            this.Text = String.Format("交易确认 - {0}", steamAccount.AccountName);
 
             CefSettings settings = new CefSettings();
             settings.PersistSessionCookies = false;

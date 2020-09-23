@@ -43,7 +43,7 @@
             this.lblDesc.Name = "lblDesc";
             this.lblDesc.Size = new System.Drawing.Size(142, 38);
             this.lblDesc.TabIndex = 1;
-            this.lblDesc.Text = "trade description";
+            this.lblDesc.Text = "交易说明";
             this.lblDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnDeny
@@ -54,7 +54,7 @@
             this.btnDeny.Name = "btnDeny";
             this.btnDeny.Size = new System.Drawing.Size(69, 32);
             this.btnDeny.TabIndex = 2;
-            this.btnDeny.Text = "Deny";
+            this.btnDeny.Text = "拒绝";
             this.btnDeny.UseVisualStyleBackColor = false;
             this.btnDeny.Click += new System.EventHandler(this.btnDeny_Click);
             // 
@@ -66,7 +66,7 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(67, 32);
             this.btnAccept.TabIndex = 2;
-            this.btnAccept.Text = "Accept";
+            this.btnAccept.Text = "接受";
             this.btnAccept.UseVisualStyleBackColor = false;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
@@ -77,7 +77,7 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(166, 19);
             this.lblStatus.TabIndex = 3;
-            this.lblStatus.Text = "status";
+            this.lblStatus.Text = "状态";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblAccount
@@ -87,7 +87,7 @@
             this.lblAccount.Name = "lblAccount";
             this.lblAccount.Size = new System.Drawing.Size(142, 23);
             this.lblAccount.TabIndex = 4;
-            this.lblAccount.Text = "account name";
+            this.lblAccount.Text = "账号名称";
             this.lblAccount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TradePopupForm
@@ -104,7 +104,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TradePopupForm";
-            this.Text = "New confirmation";
+            this.Text = "新的确认";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.TradePopupForm_Load);
             this.ResumeLayout(false);

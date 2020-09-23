@@ -45,7 +45,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Username:";
+            this.label1.Text = "账号:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtUsername
@@ -73,7 +73,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 25);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Password:";
+            this.label2.Text = "密码:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnSteamLogin
@@ -83,7 +83,7 @@
             this.btnSteamLogin.Name = "btnSteamLogin";
             this.btnSteamLogin.Size = new System.Drawing.Size(110, 33);
             this.btnSteamLogin.TabIndex = 4;
-            this.btnSteamLogin.Text = "Login";
+            this.btnSteamLogin.Text = "登录";
             this.btnSteamLogin.UseVisualStyleBackColor = true;
             this.btnSteamLogin.Click += new System.EventHandler(this.btnSteamLogin_Click);
             // 
@@ -94,8 +94,7 @@
             this.labelLoginExplanation.Name = "labelLoginExplanation";
             this.labelLoginExplanation.Size = new System.Drawing.Size(306, 46);
             this.labelLoginExplanation.TabIndex = 5;
-            this.labelLoginExplanation.Text = "This will activate Steam Desktop Authenticator on your Steam account. This requir" +
-    "es a phone number that can receive SMS.";
+            this.labelLoginExplanation.Text = "此操作将激活您Steam帐户上的Steam桌面验证器。 这需要一个可以接收短信的电话号码。";
             // 
             // LoginForm
             // 
@@ -117,7 +116,7 @@
             this.Name = "LoginForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Steam Login";
+            this.Text = "Steam 登录";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

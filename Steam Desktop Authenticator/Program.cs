@@ -40,7 +40,7 @@ namespace Steam_Desktop_Authenticator
             // run the program only once
             if (PriorProcess() != null)
             {
-                MessageBox.Show("Another instance of the app is already running.");
+                MessageBox.Show("该应用程序的另一个实例已经在运行。");
                 return;
             }
 
@@ -62,13 +62,13 @@ namespace Steam_Desktop_Authenticator
                 // Manifest file was corrupted, generate a new one.
                 try
                 {
-                    MessageBox.Show("Your settings were unexpectedly corrupted and were reset to defaults.", "Steam Desktop Authenticator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("您的设置意外损坏，重置为初始值。", "Steam桌面验证器", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     man = Manifest.GenerateNewManifest(true);
                 }
                 catch (MaFileEncryptedException)
                 {
                     // An maFile was encrypted, we're fucked.
-                    MessageBox.Show("Sorry, but SDA was unable to recover your accounts since you used encryption.\nYou'll need to recover your Steam accounts by removing the authenticator.\nClick OK to view instructions.", "Steam Desktop Authenticator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("对不起，由于您使用了加密，SDA无法恢复您的帐户。您需要通过删除验证器来恢复您的Steam帐户。单击确认查看指示。", "Steam桌面验证器", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Diagnostics.Process.Start(@"https://github.com/Jessecar96/SteamDesktopAuthenticator/wiki/Help!-I'm-locked-out-of-my-account");
                     return;
                 }

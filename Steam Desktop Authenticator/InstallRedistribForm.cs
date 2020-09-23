@@ -56,7 +56,7 @@ namespace Steam_Desktop_Authenticator
         {
             if (inlineInstall)
             {
-                MessageBox.Show("Install complete! You may need to restart Steam Desktop Authenticator to view trade confirmations.", "Visual C++ Redistributable 2013", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("安装完毕！您可能需要重新启动SDA来查看交易确认情况。", "Visual C++ Redistributable 2013", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             this.Invoke((MethodInvoker)delegate
